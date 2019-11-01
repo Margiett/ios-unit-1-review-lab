@@ -42,7 +42,18 @@ candid world.
 ```
 My Answer 
 ```
-var declarationArray = declarationOfIndependence.components(separatedBy: " ").filter({$0.count > 5}) // the reason why is ambiguous is because it does not know what to do with the $0 because is a String and we need to turn it into a Int therefore you do a .count to turn it into Int
+let punctuation = CharacterSet.punctuationCharacters
+let newlineWhitespace = CharacterSet.whitespacesAndNewlines
+
+var declarationArray = declarationOfIndependence.components(separatedBy: punctuation)
+    .joined(separator: " ")
+    .components(separatedBy: newlineWhitespace)
+    .filter { $0.count > 5 }
+
+print(declarationArray)
+    
+    
+//    .components(separatedBy: " ").filter({$0.count > 5}) // the reason why is ambiguous is because it does not know what to do with the $0 because is a String and we need to turn it into a Int therefore you do a .count to turn it into Int
 
 var newDict = [String:Int]()
 
