@@ -1,4 +1,4 @@
-# Unit 1 Review Lab
+q# Unit 1 Review Lab
 
 Before completing any of the review questions below, ensure that you have answered each question in the previous labs.
 
@@ -7,7 +7,9 @@ Before completing any of the review questions below, ensure that you have answer
 Given the following excerpt from the Declaration of Independence, find the most frequent word that is longer than 5 characters.
 
  - use components(separatedBy:) to break up the string into an array.
- - use CharacterSet.punctuationCharacters in union with any other characters you don't want in your array, like spaces and new lines.
+ 
+ 
+ - use CharacterSet.punctuationCharacters in union with any other characters you don't want in your array, like spaces and new lines.  // I don't know how to use this 
 
 ```swift
 let declarationOfIndependence =
@@ -144,6 +146,17 @@ Input: [[2,4,1],[3,0],[9,3]]
 
 Output: [9,3]
 ```
+My Answer:
+```
+var sumArray = [Int]() //empty array of typy Int
+
+let arr = [[2,4,1],[3,0],[9,3]]
+for arrOne in arr {
+    
+    sumArray.append(arrOne.reduce(0, +))
+}
+var largestSum = sumArray.max()
+```
 
 ## Question 5
 
@@ -160,10 +173,27 @@ struct ReceiptItem {
 ```
 
 a. Given the structs above, add a method to `Receipt` that returns the total cost of all items
-
+My Answer 
+```
+func totalCost(_ sumOfItems: [Double]) -> Double {
+let cost = sumOfItems.reduce(0,+)
+    // when you do .reduce the first letter in the () should be the number that you want to add to the whole array example if the total of the array is 30 it would add 0 to it or it would add 10 if or multiple (numbe of adding and , sign
+return cost
+}
+```
 b. Write a function that takes in an array of `Receipts` and returns an array of `Receipts` that match a given store name
-
+My Answer
+```
+func findStoreReceipts(receipt: [Receipt], nameStore: String) -> [Receipt] {
+let filteredStoreReceipts = receipt.filter({$0.storeName == nameStore })
+return filteredStoreReceipts
+}
+```
 c. Write a function that takes in an array of `Receipts` and returns an array of those receipts sorted by price
+
+```
+question is to vague slacked Antoion to work on it with him
+```
 
 ## Question 6
 
@@ -188,7 +218,7 @@ fred.name = "Brick"
 fred.weight = 999.2
 fred.homePlanet = "Mars"
 
-My Answer: 
+My Answer Question A: 
 ```
 does not compile because let homePlanet: String needs to be changed to var because by having it a let is making it a constant. 
 
@@ -219,7 +249,7 @@ let edgar = Giant(name: "Edgar", weight: 520.0, homePlanet: "Earth")
 let jason = edgar
 jason.name = "Jason"
 
-My answer:
+My answer B:
 ```
 Both will print Jason, for edgar.name and jason.name because line 184 it resigning the name to Jason.
 ```
@@ -255,6 +285,7 @@ The code does not compile because, is missing mutating infront of func  // A
 struct BankAccount {
     var owner: String
     var balance: Double
+    
     var deposits: [Double] // B
     var withdraws: [Double] // C
     private var startingBalance:Double { didSet { startingBalance = balance}
@@ -347,3 +378,7 @@ Input: ["Hello", "Alaska", "Dad", "Peace", "Power"]
 
 Output: ["Alaska", "Dad", "Power"]
 ```
+// for loop 
+//3 var 
+// bool
+//.contain 
