@@ -38,6 +38,24 @@ establishment of an absolute Tyranny over these States. To prove this, let Facts
 candid world.
 """
 ```
+My Answer 
+```
+var declarationArray = declarationOfIndependence.components(separatedBy: " ").filter({$0.count > 5}) // the reason why is ambiguous is because it does not know what to do with the $0 because is a String and we need to turn it into a Int therefore you do a .count to turn it into Int
+
+var newDict = [String:Int]()
+
+for word in declarationArray{
+    newDict[word] = (newDict[word] ?? 0) + 1
+}
+
+var result = newDict.sorted(by: {$0.value > $1.value})
+// the $0 is holding the key and the value in this case
+// the $1 is comparing and figuring out what value is greater based on your condition is flipping it
+
+
+result[0].key
+result[0].value
+```
 
 ## Question 2
 
@@ -91,6 +109,24 @@ let letterValues = [
 ```
 
 a. Sort the string below in descending order according the dictionary letterValues
+a = 54
+a = 54
+a = 54
+l = 203 
+d = 31
+f = 14
+j = 32
+j = 32
+j = 32 
+e = 34 
+e = 34
+k = 93 
+w = 555
+
+n = 41
+f = 14
+k = 93
+
 var codeString = "aldfjaekwjnfaekjnf"
 
 
@@ -133,7 +169,30 @@ c. Write a function that takes in an array of `Receipts` and returns an array of
 
 a. The code below doesn't compile.  Why?  Fix it so that it does compile.
 
-```swift
+`swift
+class Giant {
+    var name: String
+    var weight: Double
+    let homePlanet: String
+
+    init(name: String, weight: Double, homePlanet: String) {
+        self.name = name
+        self.weight = weight
+        self.homePlanet = homePlanet
+    }
+}
+
+let fred = Giant(name: "Fred", weight: 340.0, homePlanet: "Earth")
+
+fred.name = "Brick"
+fred.weight = 999.2
+fred.homePlanet = "Mars"
+
+My Answer: 
+```
+does not compile because let homePlanet: String needs to be changed to var because by having it a let is making it a constant. 
+
+Fixed Code 
 class Giant {
     var name: String
     var weight: Double
@@ -155,10 +214,14 @@ fred.homePlanet = "Mars"
 
 b. Using the Giant class. What will the value of `edgar.name` be after the code below runs? How about `jason.name`? Explain why.
 
-```swift
+swift
 let edgar = Giant(name: "Edgar", weight: 520.0, homePlanet: "Earth")
 let jason = edgar
 jason.name = "Jason"
+
+My answer:
+```
+Both will print Jason, for edgar.name and jason.name because line 184 it resigning the name to Jason.
 ```
 
 ## Question 7
@@ -177,16 +240,52 @@ struct BankAccount {
     }
 }
 ```
-
 a. Explain why the code above doesn't compile, then fix it.
-
 b. Add a property called `deposits` of type `[Double]` that stores all of the deposits made to the bank account
-
 c. Add a property called `withdraws` of type `[Double]` that stores all of the withdraws made to the bank account
-
 d. Add a property called `startingBalance`.  Have this property be set to the original balance, and don't allow anyone to change it
-
 e. Add a method called `totalGrowth` that returns a double representing the change in the balance from the starting balance to the current balance
+
+My Answer To all the letters :
+
+```
+The code does not compile because, is missing mutating infront of func  // A
+
+
+struct BankAccount {
+    var owner: String
+    var balance: Double
+    var deposits: [Double] // B
+    var withdraws: [Double] // C
+    private var startingBalance:Double { didSet { startingBalance = balance}
+    
+    } // D
+    
+    // didset = it waits for the variable to have a value didset is going to wait for balance to have a value and than it would assign it to the startingbalance
+// private var noone can reasign it to anything else
+    
+    mutating func deposit(_ amount: Double) {
+        balance += amount
+        deposits.append(balance) // b
+    }
+
+    mutating func withdraw(_ amount: Double) {
+        balance -= amount
+        withdraws.append(balance) // c
+    }
+
+
+//e. Add a method called `totalGrowth` that returns a double representing the change in the balance from the starting balance to the current balance
+
+    mutating func totalGrowth() -> Double {
+        let change:Double = startingBalance - balance
+        return change
+    }
+    
+}
+```
+
+
 
 ## Question 8
 
@@ -230,8 +329,13 @@ class MusicLibrary {
 let library1 = MusicLibrary()
 library1.add(track: "Michelle")
 library1.add(track: "Voodoo Child")
-let library2 = library
+let library2 = library1
 library2.add(track: "Come As You Are")
+
+My Answer: 
+The contents of library1 is Michelle and Voodoo Child because on line 231 and 232 it was added to to library1 
+
+The contents of library2 is Michelle, Voodoo Child and Come As You Are because on line 233 is saying that library1 is now the same as library2 pluse it added track Come As You Are in line 234.
 ```
 
 ## Question 10
